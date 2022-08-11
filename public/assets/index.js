@@ -12,6 +12,7 @@ if (window.location.pathname === '/notes') {
   noteList = document.querySelectorAll('.list-container .list-group');
 }
 
+// saveNoteBtn.addEventListener("click", () => console.log("I was clicked"));
 // Show an element
 const show = (elem) => {
   elem.style.display = 'inline';
@@ -39,7 +40,7 @@ const saveNote = (note) =>
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(note),
+    body: JSON.stringify(note)
   });
 
 const deleteNote = (id) =>
@@ -47,7 +48,7 @@ const deleteNote = (id) =>
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',
-    },
+    }
   });
 
 const renderActiveNote = () => {
@@ -89,8 +90,8 @@ const handleNoteDelete = (e) => {
     activeNote = {};
   }
 
-  deleteNote(noteId).then(() => {
-    getAndRenderNotes();
+  deleteNote(noteId).then((response) => {
+    getAndRenderNotes(response);
     renderActiveNote();
   });
 };
